@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 let common = require('./common');
 
 common.mongooseInit();
@@ -6,19 +7,19 @@ common.mongooseInit();
 //Real code starts here
 //Change schema,model, url, and processData()
 
-let mainURL = "https://pokeapi.co/api/v2/language";
+let mainURL = "https://pokeapi.co/api/v2/encounter-method";
 let ULen = mainURL.length+1;
 
-const langSchema = mongoose.Schema(common.schemas.language_schema, {collection : "language"});
+const encounterMethodSchema = mongoose.Schema(common.schemas.encounter_method_schema , {collection : "encountermethod"});
 
-const Language = mongoose.model("Language", langSchema);
+const EncounterMethod = mongoose.model("EncounterMethod", encounterMethodSchema);
 
 async function processData(data) {
     for (let i in data.names){
         data.names[i].language.id = data.names[i].language.url.slice(ULen,-1);
         delete data.names[i].language.url;
     }
-    Language.create(data).then(u => console.log(u));
+    EncounterMethod.create(data).then(u => console.log(u));
 }
 
 //main code
