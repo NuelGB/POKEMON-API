@@ -7,21 +7,30 @@ common.mongooseInit();
 //Real code starts here
 //Change schema,model, url, and processData()
 
-let mainURL = "https://pokeapi.co/api/v2/encounter-method";
+let mainURL = "https://pokeapi.co/api/v2/move-damage-class";
 let ULen = mainURL.length+1;
 
-const encounterMethodSchema = mongoose.Schema(common.schemas.encounter_method_schema , {collection : "encountermethod"});
+const moveDamageClass = mongoose.Schema(common.schemas.move_damage_class_schema , {collection : "movedamageclass"});
 
-const EncounterMethod = mongoose.model("EncounterMethod", encounterMethodSchema);
+const MoveDamageClass = mongoose.model("MoveDamageClass", moveDamageClass);
 
 async function processData(data) {
     let langLen = "https://pokeapi.co/api/v2/language/".length;
+    let moveLen = "https://pokeapi.co/api/v2/move/".length;
 
     for (let i in data.names){
         data.names[i].language.id = Number(data.names[i].language.url.slice(langLen,-1));
         delete data.names[i].language.url;
     }
-    await EncounterMethod.create(data).then(u => console.log(u));
+    for (let i in data.moves) {
+        data.moves[i].id = Number(data.moves[i].url.slice(moveLen,-1));
+        delete data.moves[i].url;
+    }
+    for (let i in data.descriptions) {
+        data.descriptions[i].language.id = Number(data.descriptions[i].language.url.slice(langLen,-1));
+        delete data.descriptions[i].language.url;
+    }
+    await MoveDamageClass.create(data).then(u => console.log(u));
 }
 
 //main code
