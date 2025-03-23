@@ -8,7 +8,7 @@ mongoose.connect(
 );
 const db = mongoose.connection;
 
-collections = ['language','encountermethod'];
+collections = ['language','encountermethod','contesteffect','itemattribute'];
 async function clearDB(){
     for (let i of collections){
         await db.dropCollection(i).then(()=>console.log("Collection "+ i + " has been removed"));

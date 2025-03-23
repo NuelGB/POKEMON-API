@@ -18,7 +18,7 @@ async function processData(data) {
         data.names[i].language.id = data.names[i].language.url.slice(ULen,-1);
         delete data.names[i].language.url;
     }
-    Language.create(data).then(u => console.log(u));
+    await Language.create(data).then(u => console.log(u));
 }
 
 //main code
@@ -28,8 +28,8 @@ async function startInput(){
     for (let i of listOfItems.results){
         let tempURL = `${mainURL}/${i.url.slice(ULen,-1)}/`;
         let data = await fetch(tempURL).then(res => res.json());
-        processData(data);
+        await processData(data);
     }
 }
 
-startInput().then(()=>setTimeout(()=>{mongoose.connection.close();console.log("Done");},1000));
+startInput().then(()=>setTimeout(()=>{mongoose.connection.close();console.log("Done");},500));

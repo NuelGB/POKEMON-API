@@ -15,16 +15,18 @@ const contestEffectSchema = mongoose.Schema(common.schemas.contest_effect_schema
 const ContestEffect = mongoose.model("ContestEffect", contestEffectSchema);
 
 async function processData(data) {
+    let langLen = "https://pokeapi.co/api/v2/language/".length;
+
     for (let i in data.effect_entries){
-        data.effect_entries[i].language.id = data.effect_entries[i].language.url.slice(ULen,-1);
+        data.effect_entries[i].language.id = Number(data.effect_entries[i].language.url.slice(langLen,-1));
         delete data.effect_entries[i].language.url;
     }
     for (let i in data.flavor_text_entries){
-        data.flavor_text_entries[i].language.id = data.flavor_text_entries[i].language.url.slice(ULen,-1);
+        data.flavor_text_entries[i].language.id = Number(data.flavor_text_entries[i].language.url.slice(langLen,-1));
         delete data.flavor_text_entries[i].language.url;
         if (data.flavor_text_entries[i].version) {delete data.flavor_text_entries[i].version;}
     }
-    ContestEffect.create(data).then(u => console.log(u));
+    await ContestEffect.create(data).then(u => console.log(u));
 }
 
 //main code
@@ -38,4 +40,4 @@ async function startInput(){
     }
 }
 
-startInput().then(()=>setTimeout(()=>{mongoose.connection.close();console.log("Done");},1000));
+startInput().then(()=>setTimeout(()=>{mongoose.connection.close();console.log("Done");},500));

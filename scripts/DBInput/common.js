@@ -11,20 +11,16 @@ function mongooseInit(){
 
 let commonModels = {};
 
-commonModels.language = {
-    name : String,
-    id : Number
-}
-
-commonModels.names = [{
-    name : String,
-    language : commonModels.language
-}]
-
 commonModels.NamedAPIResource = {
     name : String,
     id : Number
 }
+commonModels.names = [{
+    name : String,
+    language : commonModels.NamedAPIResource
+}]
+
+
 
 let schemas = {}
 
@@ -50,12 +46,24 @@ schemas.contest_effect_schema = {
     jam : Number,
     effect_entries : [{
         effect : String,
-        language : commonModels.language
+        language : commonModels.NamedAPIResource
     }],
     flavor_text_entries : [{
         flavor_text : String,
-        language : commonModels.language
+        language : commonModels.NamedAPIResource
     }]
+}
+
+schemas.item_attribute_schema = {
+    id : Number,
+    name : String,
+    items : [commonModels.NamedAPIResource],
+    names : commonModels.names,
+    descriptions : [{
+        description : String,
+        language : commonModels.NamedAPIResource
+    }]
+
 }
 
 exports.mongooseInit = mongooseInit;
