@@ -63,7 +63,27 @@ schemas.item_attribute_schema = {
         description : String,
         language : commonModels.NamedAPIResource
     }]
+}
 
+schemas.item_fling_effect_schema = {
+    id : Number,
+    name : String,
+    effect_entries : [{
+        effect : String,
+        language : commonModels.NamedAPIResource
+    }],
+    items : [commonModels.NamedAPIResource]
+}
+
+schemas.move_damage_class_schema = {
+    id : Number,
+    name : String,
+    descriptions : [{
+        description : String,
+        language : commonModels.NamedAPIResource
+    }],
+    moves : [commonModels.NamedAPIResource],
+    names : commonModels.names
 }
 
 exports.mongooseInit = mongooseInit;
