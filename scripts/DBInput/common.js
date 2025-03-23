@@ -19,6 +19,10 @@ commonModels.names = [{
     name : String,
     language : commonModels.NamedAPIResource
 }]
+commonModels.descriptions = [{
+    description : String,
+    language : commonModels.NamedAPIResource
+}]
 
 
 
@@ -59,10 +63,7 @@ schemas.item_attribute_schema = {
     name : String,
     items : [commonModels.NamedAPIResource],
     names : commonModels.names,
-    descriptions : [{
-        description : String,
-        language : commonModels.NamedAPIResource
-    }]
+    descriptions : commonModels.descriptions
 }
 
 schemas.item_fling_effect_schema = {
@@ -78,12 +79,21 @@ schemas.item_fling_effect_schema = {
 schemas.move_damage_class_schema = {
     id : Number,
     name : String,
-    descriptions : [{
-        description : String,
-        language : commonModels.NamedAPIResource
-    }],
+    descriptions : commonModels.descriptions,
     moves : [commonModels.NamedAPIResource],
     names : commonModels.names
+}
+
+schemas.growth_rate_schema = {
+    id : Number,
+    name : String,
+    formula : String,
+    descriptions : commonModels.descriptions,
+    levels : [{
+        level : Number,
+        experience : Number
+    }],
+    pokemon_species : [commonModels.NamedAPIResource]
 }
 
 exports.mongooseInit = mongooseInit;
