@@ -96,6 +96,35 @@ schemas.growth_rate_schema = {
     pokemon_species : [commonModels.NamedAPIResource]
 }
 
+schemas.contest_type_schema = {
+    id : Number,
+    name : String,
+    berry_flavor : commonModels.NamedAPIResource,
+    names : [{
+        name : String,
+        color : String,
+        language : commonModels.NamedAPIResource
+    }]
+}
+
+schemas.berry_schema = {
+    id : Number,
+    name : String,
+    growth_time : Number,
+    max_harvest : Number,
+    natural_gift_power : Number,
+    size : Number,
+    smoothness : Number,
+    soil_dryness : Number,
+    firmness : commonModels.NamedAPIResource,
+    flavors : [{
+        potency : Number ,
+        flavor : commonModels.NamedAPIResource
+    }],
+    item : commonModels.NamedAPIResource,
+    natural_gift_type : commonModels.NamedAPIResource
+}
+
 exports.mongooseInit = mongooseInit;
 exports.schemas = schemas;
 exports.commonModels = commonModels;
