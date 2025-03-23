@@ -32,4 +32,4 @@ async function startInput(){
     }
 }
 
-startInput().then(()=>setTimeout(()=>{mongoose.connection.close();console.log("Done");},500));
+startInput().then(()=>setTimeout(()=>{mongoose.connection.close();console.log("Done");},1000));

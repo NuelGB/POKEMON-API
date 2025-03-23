@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "resetpopulate" : "node scripts/DBReset.js && node scripts/DBInput/language.js && node scripts/DBInput/encounter-method.js && node scripts/DBInput/contest-effect.js && node scripts/DBInput/item-attribute.js && node scripts/DBInput/item-fling-effect.js && node scripts/DBInput/move-damage-class.js"
+    "resetpopulate" : "node scripts/DBReset.js && node scripts/DBInput/language.js && node scripts/DBInput/encounter-method.js && node scripts/DBInput/contest-effect.js && node scripts/DBInput/item-attribute.js && node scripts/DBInput/item-fling-effect.js && node scripts/DBInput/move-damage-class.js && node scripts/DBInput/growth-rate.js && node scripts/DBInput/berry.js && node scripts/DBInput/contest-type.js"
   },
   "author": "",
   "license": "ISC",
