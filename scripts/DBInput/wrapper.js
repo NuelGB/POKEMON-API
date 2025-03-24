@@ -5,17 +5,17 @@ function URLToInt(object , linkLen){
 
 
 processData = {
+    firmLen : "https://pokeapi.co/api/v2/berry-firmness/".length,
+    flavLen : "https://pokeapi.co/api/v2/berry-flavor/".length,
+    itemLen : "https://pokeapi.co/api/v2/item/".length,
+    ngtLen : "https://pokeapi.co/api/v2/type/".length,
+    
     berry : function(data){
-        let firmLen = "https://pokeapi.co/api/v2/berry-firmness/".length;
-        let flavLen = "https://pokeapi.co/api/v2/berry-flavor/".length;
-        let itemLen = "https://pokeapi.co/api/v2/item/".length;
-        let ngtLen = "https://pokeapi.co/api/v2/type/".length;
-        
-        URLToInt(data.firmness,firmLen);
-        URLToInt(data.item,itemLen);
-        URLToInt(data.natural_gift_type , ngtLen);
+        URLToInt(data.firmness,this.firmLen);
+        URLToInt(data.item,this.itemLen);
+        URLToInt(data.natural_gift_type , this.ngtLen);
         for (let i of data.flavors) {
-            URLToInt(i.flavor,flavLen);
+            URLToInt(i.flavor,this.flavLen);
         }
     }
 }
