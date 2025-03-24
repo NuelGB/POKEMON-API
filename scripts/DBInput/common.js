@@ -28,14 +28,14 @@ commonModels.descriptions = [{
 
 let schemas = {}
 
-schemas.encountermethod = {
+schemas["encounter-method"] = {
     id : Number,
     name : String,
     order : Number,
     names : commonModels.names
 } ;
 
-schemas.language = {
+schemas["language"] = {
     id : Number ,
     name : String,
     official : Boolean,
@@ -44,7 +44,7 @@ schemas.language = {
     names : commonModels.names
 } 
 
-schemas.contesteffect = {
+schemas["contest-effect"] = {
     id : Number,
     appeal : Number,
     jam : Number,
@@ -54,11 +54,12 @@ schemas.contesteffect = {
     }],
     flavor_text_entries : [{
         flavor_text : String,
-        language : commonModels.NamedAPIResource
+        language : commonModels.NamedAPIResource,
+        version : commonModels.NamedAPIResource
     }]
 }
 
-schemas.itemattribute = {
+schemas["item-attribute"] = {
     id : Number,
     name : String,
     items : [commonModels.NamedAPIResource],
@@ -66,7 +67,7 @@ schemas.itemattribute = {
     descriptions : commonModels.descriptions
 }
 
-schemas.itemflingeffect = {
+schemas["item-fling-effect"] = {
     id : Number,
     name : String,
     effect_entries : [{
@@ -76,7 +77,7 @@ schemas.itemflingeffect = {
     items : [commonModels.NamedAPIResource]
 }
 
-schemas.movedamageclass = {
+schemas["move-damage-class"] = {
     id : Number,
     name : String,
     descriptions : commonModels.descriptions,
@@ -84,7 +85,7 @@ schemas.movedamageclass = {
     names : commonModels.names
 }
 
-schemas.growthrate = {
+schemas["growth-rate"] = {
     id : Number,
     name : String,
     formula : String,
@@ -96,7 +97,7 @@ schemas.growthrate = {
     pokemon_species : [commonModels.NamedAPIResource]
 }
 
-schemas.contesttype = {
+schemas["contest-type"] = {
     id : Number,
     name : String,
     berry_flavor : commonModels.NamedAPIResource,
@@ -107,7 +108,7 @@ schemas.contesttype = {
     }]
 }
 
-schemas.berry = {
+schemas["berry"] = {
     id : Number,
     name : String,
     growth_time : Number,
