@@ -121,6 +121,15 @@ processData = {
     ["evolution-chain"] : function(data){
         if(data.baby_trigger_item)URLToInt(data.baby_trigger_item,CONSTANTS.itemLen);
         evoChainHelperFunction(data.chain);
+    },
+
+    ['evolution-trigger'] : function(data){
+        for (let i of data.names) {
+            URLToInt(i.language,CONSTANTS.langLen);
+        }
+        for (let i of data.pokemon_species){
+            URLToInt(i,CONSTANTS.specLen);
+        }
     }
 }
 

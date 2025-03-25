@@ -240,6 +240,13 @@ schemas["evolution-chain"] = {
     chain : recursing_chain
 };
 
+schemas["evolution-trigger"] = {
+    id : Number,
+    name : String,
+    names : commonModels.names,
+    pokemon_species : [commonModels.NamedAPIResource]
+}
+
 exports.mongooseInit = mongooseInit;
 exports.schemas = schemas;
 exports.commonModels = commonModels;

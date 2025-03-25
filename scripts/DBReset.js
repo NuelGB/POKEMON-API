@@ -3,6 +3,8 @@ let fs = require('fs');
 
 let config = JSON.parse(fs.readFileSync('./config/config.json', 'utf8'));
 let dbLink = config.url;
+
+
 mongoose.connect(
     dbLink
 );
@@ -12,7 +14,7 @@ collections = [
     'language','encounter-method','contest-effect',
     'item-attribute','item-fling-effect','move-damage-class',
     'growth-rate','berry','contest-type',
-    'evolution-chain'
+    'evolution-chain','evolution-trigger'
 ];
 async function clearDB(){
     for (let i of collections){

@@ -11,7 +11,7 @@ collections = [
     'berry','contest-effect','language',
     'move-damage-class','contest-type','encounter-method',
     'growth-rate','item-attribute','item-fling-effect',
-    'evolution-chain'
+    'evolution-chain','evolution-trigger'
 ];
 
 async function processData(data,col,model){
