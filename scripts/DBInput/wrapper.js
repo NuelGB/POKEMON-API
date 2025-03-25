@@ -12,6 +12,7 @@ processData = {
     langLen : "https://pokeapi.co/api/v2/language/".length,
     verLen : "https://pokeapi.co/api/v2/version/".length,
     moveLen : "https://pokeapi.co/api/v2/move/".length,
+    specLen : "https://pokeapi.co/api/v2/pokemon-species/".length,
 
     ["berry"] : function(data){
         URLToInt(data.firmness,this.firmLen);
@@ -59,6 +60,36 @@ processData = {
 
     ["encounter-method"] : function(data){
         for (let i of data.names){
+            URLToInt(i.language,this.langLen);
+        }
+    },
+
+    ["growth-rate"] : function(data) {
+        for (let i of data.descriptions){
+            URLToInt(i.language,this.langLen);
+        }
+        for (let i of data.pokemon_species){
+            URLToInt(i,this.specLen);
+        }
+    },
+
+    ["item-attribute"] : function(data){
+        for (let i of data.items){
+            URLToInt(i,this.itemLen);
+        }
+        for (let i of data.names){
+            URLToInt(i.language,this.langLen);
+        }
+        for (let i of data.descriptions){
+            URLToInt(i.language,this.langLen);
+        }
+    },
+
+    ["item-fling-effect"] : function(data){
+        for (let i of data.items){
+            URLToInt(i,this.itemLen);
+        }
+        for (let i of data.effect_entries){
             URLToInt(i.language,this.langLen);
         }
     }

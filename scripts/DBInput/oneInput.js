@@ -7,7 +7,7 @@ common.mongooseInit();
 
 let mainURL = "https://pokeapi.co/api/v2/";
 
-collections = ['encounter-method'];
+collections = ['item-fling-effect'];
 
 async function processData(data,col,model){
     wrapper.processData[col](data);
