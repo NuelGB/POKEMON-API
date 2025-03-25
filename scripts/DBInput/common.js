@@ -126,6 +126,120 @@ schemas["berry"] = {
     natural_gift_type : commonModels.NamedAPIResource
 }
 
+//To implement /evolution-chain, we need an object that supports infinite recurision
+//Neither MongoDB nor JavaScript supports infinite levels of recursion
+//Since checking recursions would take an unoptimized amount of time,
+//We will assume a max level of recursion for simplicity
+//Based on a google search, the longest Evo-chain is 3 deep.
+//Without doing any research on the original API, assume 4 recursions is enough.
+recursing_chain = {
+    id_baby : Boolean,
+    species : commonModels.NamedAPIResource,
+    evolution_details : [{
+        item : commonModels.NamedAPIResource,
+        trigger : commonModels.NamedAPIResource,
+        gender : Number,
+        held_item : commonModels.NamedAPIResource,
+        known_move : commonModels.NamedAPIResource,
+        known_move_type : commonModels.NamedAPIResource,
+        location : commonModels.NamedAPIResource,
+        min_level : Number,
+        min_happiness : Number,
+        min_beauty : Number,
+        min_affection : Number,
+        needs_overworld_rain : Boolean,
+        party_species : commonModels.NamedAPIResource,
+        party_type : commonModels.NamedAPIResource,
+        relative_physical_stats : Number,
+        time_of_day : String,
+        trade_species : commonModels.NamedAPIResource,
+        turn_upside_down : Boolean
+    }],
+    evolves_to : [
+        {
+            id_baby : Boolean,
+            species : commonModels.NamedAPIResource,
+            evolution_details : [{
+                item : commonModels.NamedAPIResource,
+                trigger : commonModels.NamedAPIResource,
+                gender : Number,
+                held_item : commonModels.NamedAPIResource,
+                known_move : commonModels.NamedAPIResource,
+                known_move_type : commonModels.NamedAPIResource,
+                location : commonModels.NamedAPIResource,
+                min_level : Number,
+                min_happiness : Number,
+                min_beauty : Number,
+                min_affection : Number,
+                needs_overworld_rain : Boolean,
+                party_species : commonModels.NamedAPIResource,
+                party_type : commonModels.NamedAPIResource,
+                relative_physical_stats : Number,
+                time_of_day : String,
+                trade_species : commonModels.NamedAPIResource,
+                turn_upside_down : Boolean
+            }],
+            evolves_to : [
+                {
+                    id_baby : Boolean,
+                    species : commonModels.NamedAPIResource,
+                    evolution_details : [{
+                        item : commonModels.NamedAPIResource,
+                        trigger : commonModels.NamedAPIResource,
+                        gender : Number,
+                        held_item : commonModels.NamedAPIResource,
+                        known_move : commonModels.NamedAPIResource,
+                        known_move_type : commonModels.NamedAPIResource,
+                        location : commonModels.NamedAPIResource,
+                        min_level : Number,
+                        min_happiness : Number,
+                        min_beauty : Number,
+                        min_affection : Number,
+                        needs_overworld_rain : Boolean,
+                        party_species : commonModels.NamedAPIResource,
+                        party_type : commonModels.NamedAPIResource,
+                        relative_physical_stats : Number,
+                        time_of_day : String,
+                        trade_species : commonModels.NamedAPIResource,
+                        turn_upside_down : Boolean
+                    }],
+                    evolves_to : [ {
+                        id_baby : Boolean,
+                        species : commonModels.NamedAPIResource,
+                        evolution_details : [{
+                            item : commonModels.NamedAPIResource,
+                            trigger : commonModels.NamedAPIResource,
+                            gender : Number,
+                            held_item : commonModels.NamedAPIResource,
+                            known_move : commonModels.NamedAPIResource,
+                            known_move_type : commonModels.NamedAPIResource,
+                            location : commonModels.NamedAPIResource,
+                            min_level : Number,
+                            min_happiness : Number,
+                            min_beauty : Number,
+                            min_affection : Number,
+                            needs_overworld_rain : Boolean,
+                            party_species : commonModels.NamedAPIResource,
+                            party_type : commonModels.NamedAPIResource,
+                            relative_physical_stats : Number,
+                            time_of_day : String,
+                            trade_species : commonModels.NamedAPIResource,
+                            turn_upside_down : Boolean
+                        }],
+                        evolves_to : Number
+                    }]
+                }
+            ]
+        }
+    ]
+}
+
+schemas["evolution-chain"] = {
+    id : Number,
+    baby_trigger_item : commonModels.NamedAPIResource,
+    chain : recursing_chain
+};
+
 exports.mongooseInit = mongooseInit;
 exports.schemas = schemas;
 exports.commonModels = commonModels;

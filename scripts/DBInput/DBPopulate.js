@@ -10,7 +10,8 @@ let mainURL = "https://pokeapi.co/api/v2/";
 collections = [
     'berry','contest-effect','language',
     'move-damage-class','contest-type','encounter-method',
-    'growth-rate','item-attribute','item-fling-effect'
+    'growth-rate','item-attribute','item-fling-effect',
+    'evolution-chain'
 ];
 
 async function processData(data,col,model){

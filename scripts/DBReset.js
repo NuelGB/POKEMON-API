@@ -8,8 +8,11 @@ mongoose.connect(
 );
 const db = mongoose.connection;
 
-collections = ['language','encounter-method','contest-effect','item-attribute','item-fling-effect','move-damage-class',
-    'growth-rate','berry','contest-type'
+collections = [
+    'language','encounter-method','contest-effect',
+    'item-attribute','item-fling-effect','move-damage-class',
+    'growth-rate','berry','contest-type',
+    'evolution-chain'
 ];
 async function clearDB(){
     for (let i of collections){
