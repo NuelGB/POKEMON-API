@@ -9,6 +9,13 @@ function mongooseInit(){
     );
 }
 
+const collections = [
+    'language','encounter-method','contest-effect',
+    'item-attribute','item-fling-effect','move-damage-class',
+    'growth-rate','berry','contest-type',
+    'evolution-chain','evolution-trigger'
+];
+
 let commonModels = {};
 
 commonModels.NamedAPIResource = {
@@ -126,6 +133,7 @@ schemas["berry"] = {
     natural_gift_type : commonModels.NamedAPIResource
 }
 
+//TODO : FIX THIS!
 //To implement /evolution-chain, we need an object that supports infinite recurision
 //Neither MongoDB nor JavaScript supports infinite levels of recursion
 //Since checking recursions would take an unoptimized amount of time,
@@ -234,6 +242,14 @@ recursing_chain = {
     ]
 }
 
+/*
+    TODO : fix evolution-chain by making a sepparate object for chains
+    Store chain objects in the database. Store a sepparate full evoluiton-chain object
+    the full object stores references to the singular chain objects
+    When the endpoint is called, recursively search for the reference in the chain database and insert it into
+    the final JSON object. 
+*/
+
 schemas["evolution-chain"] = {
     id : Number,
     baby_trigger_item : commonModels.NamedAPIResource,
@@ -250,3 +266,4 @@ schemas["evolution-trigger"] = {
 exports.mongooseInit = mongooseInit;
 exports.schemas = schemas;
 exports.commonModels = commonModels;
+exports.collections = collections;

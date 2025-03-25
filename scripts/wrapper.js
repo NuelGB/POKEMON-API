@@ -17,6 +17,7 @@ function URLToInt(object , linkLen){
     object.id = Number(object.url.slice(linkLen,-1));
 }
 
+//TODO : fix Evo-chain as specified in common.js
 function evoChainHelperFunction(evolves_to){
     URLToInt(evolves_to.species,CONSTANTS.specLen);
     for (let e of evolves_to.evolution_details){
@@ -118,6 +119,7 @@ processData = {
         }
     },
 
+    //TODO : fix Evo-chain as specified in common.js
     ["evolution-chain"] : function(data){
         if(data.baby_trigger_item)URLToInt(data.baby_trigger_item,CONSTANTS.itemLen);
         evoChainHelperFunction(data.chain);
