@@ -48,6 +48,19 @@ processData = {
         for (let i of data.descriptions){
             URLToInt(i.language,this.langLen);
         }
+    },
+
+    ["contest-type"] : function(data){
+        for (let i of data.names){
+            URLToInt(i.language , this.langLen);
+        }
+        URLToInt(data.berry_flavor,this.flavLen);
+    },
+
+    ["encounter-method"] : function(data){
+        for (let i of data.names){
+            URLToInt(i.language,this.langLen);
+        }
     }
 }
 

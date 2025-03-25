@@ -9,7 +9,7 @@ let mainURL = "https://pokeapi.co/api/v2/";
 
 collections = [
     'berry','contest-effect','language',
-    'move-damage-class'
+    'move-damage-class','contest-type','encounter-method'
 ];
 
 async function processData(data,col,model){

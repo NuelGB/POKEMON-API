@@ -7,7 +7,7 @@ common.mongooseInit();
 
 let mainURL = "https://pokeapi.co/api/v2/";
 
-collections = ['move-damage-class'];
+collections = ['encounter-method'];
 
 async function processData(data,col,model){
     wrapper.processData[col](data);
