@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "resetpopulate" : "node scripts/DbReset.js && node scripts/DBInput/DBPopulate.js"
+    "resetpopulate" : "node scripts/DbReset.js && node scripts/DBPopulate.js"
   },
   "author": "",
   "license": "ISC",

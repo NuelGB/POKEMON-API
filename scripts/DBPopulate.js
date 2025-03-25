@@ -7,11 +7,7 @@ common.mongooseInit();
 
 let mainURL = "https://pokeapi.co/api/v2/";
 
-collections = [
-    'berry','contest-effect','language',
-    'move-damage-class','contest-type','encounter-method',
-    'growth-rate','item-attribute','item-fling-effect'
-];
+collections = common.collections
 
 async function processData(data,col,model){
     wrapper.processData[col](data);
