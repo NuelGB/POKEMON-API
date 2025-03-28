@@ -159,7 +159,7 @@ schemas.berry = {
 // We will assume a max level of recursion for simplicity
 // Based on a google search, the longest Evo-chain is 3 deep.
 // Without doing any research on the original API, assume 4 recursions is enough.
-recursing_chain = {
+const recursing_chain = {
     id_baby: Boolean,
     species: commonModels.NamedAPIResource,
     evolution_details: [
