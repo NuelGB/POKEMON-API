@@ -1,19 +1,18 @@
-const mongoose = require('mongoose');
-const fs = require('fs');
+const models = require('../models');
 
-const { collections } = require('./common');
+const { db } = models;
 
-const config = JSON.parse(fs.readFileSync('./config/config.json', 'utf8'));
-const dbLink = config.url;
-
-mongoose.connect(dbLink);
-const db = mongoose.connection;
 async function clearDB() {
-    for (const i of collections) {
-        await db
-            .dropCollection(i)
-            .then(() => console.log(`Collection ${i} has been removed`));
+    const dropped = [];
+
+    for (const i in models) {
+        if (i !== 'db' && i !== 'template') {
+            dropped.push(db.dropCollection(i));
+            console.log(`${i} being dropped.`);
+        }
     }
+
+    await Promise.all(dropped);
     db.close();
     console.log('Done');
 }

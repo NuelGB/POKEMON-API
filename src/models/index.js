@@ -26,7 +26,8 @@ fs.readdirSync(__dirname)
         (file) =>
             file.indexOf('.') !== 0 &&
             file !== basename &&
-            file.slice(-3) === '.js'
+            file.slice(-3) === '.js' &&
+            file !== (basename + '/template.js')
     )
     .forEach((file) => {
         // eslint-disable-next-line import/no-dynamic-require, global-require

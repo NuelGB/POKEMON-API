@@ -1,41 +1,39 @@
-const mongoose = require('mongoose');
-
-const common = require('./common');
-const wrapper = require('./wrapper');
-
-common.mongooseInit();
+const models = require('../models');
+const wrapper = require('../utils/wrapper');
 
 const mainURL = 'https://pokeapi.co/api/v2/';
 
-const { collections } = common;
-
 async function processData(data, col, model) {
     wrapper.processData[col](data);
-    await model.create(data).then((u) => console.log(u));
+    model.create(data);
 }
 
 async function inputAll() {
-    for (const endpoint of collections) {
-        const s = mongoose.Schema(common.schemas[endpoint], {
-            collection: endpoint,
-        });
-        const m = mongoose.model(endpoint, s);
-        const url = `${mainURL}${endpoint}`;
+    for (const modelName in models) {
+        if (modelName === 'db' || modelName === 'template') continue;
+        console.log(modelName);
+        const m = models[modelName];
+        const url = `${mainURL}${modelName}`;
         const ULen = url.length + 1;
         const listOfItems = await fetch(`${url}?limit=10000`).then((res) =>
             res.json()
         );
+
+        const promises = [];
         for (const item of listOfItems.results) {
             const tempURL = `${url}/${item.url.slice(ULen, -1)}/`;
             const data = await fetch(tempURL).then((res) => res.json());
-            await processData(data, endpoint, m);
+            promises.push(processData(data, modelName, m));
         }
+        const result = await Promise.all(promises);
+        console.log(result);
+        console.log(`${modelName} done`);
     }
 }
 
 inputAll().then(() =>
     setTimeout(() => {
-        mongoose.connection.close();
-        console.log('Done');
+        models.db.close();
+        console.log('All completed!');
     }, 1000)
 );

@@ -14,6 +14,7 @@ module.exports = {
     'camelcase' : 'off',
     'no-restricted-syntax' : 'off',
     'func-names' : ['error','as-needed'],
-    'no-console' : 'off'
+    'no-console' : 'off',
+    'no-continue' : 'off'
   },
 };
