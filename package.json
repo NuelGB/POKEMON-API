@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "resetpopulate" : "node scripts/DbReset.js && node scripts/DBPopulate.js",
-    "eslint": "eslint src/**"
+    "eslint": "eslint src/**",
+    "esfix" : "eslint src/** --fix"
   },
   "author": "",
   "license": "ISC",

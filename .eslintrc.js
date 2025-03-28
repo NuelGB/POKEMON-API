@@ -11,5 +11,9 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': ['error'],
+    'camelcase' : 'off',
+    'no-restricted-syntax' : 'off',
+    'func-names' : ['error','as-needed'],
+    'no-console' : 'off'
   },
 };

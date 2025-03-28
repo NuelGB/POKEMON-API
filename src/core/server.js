@@ -34,36 +34,36 @@ app.use(`${config.api.prefix}`, routes());
 
 // Handle 404 route
 app.use((request, response, next) =>
-  next(errorResponder(errorTypes.ROUTE_NOT_FOUND, 'Route not found'))
+    next(errorResponder(errorTypes.ROUTE_NOT_FOUND, 'Route not found'))
 );
 
 // Error loggers
 app.use((error, request, response, next) => {
-  const ctx = {
-    code: error.code,
-    status: error.status,
-    description: error.description,
-  };
+    const ctx = {
+        code: error.code,
+        status: error.status,
+        description: error.description,
+    };
 
-  // If this error is thrown by our code execution, then also log the stack trace
-  if (error.stack) {
-    ctx.stack = error.stack;
-  }
+    // If this error is thrown by our code execution, then also log the stack trace
+    if (error.stack) {
+        ctx.stack = error.stack;
+    }
 
-  logger.error(ctx, error.toString());
+    logger.error(ctx, error.toString());
 
-  return next(error);
+    return next(error);
 });
 
 // Send error response to the caller
 // eslint-disable-next-line no-unused-vars
 app.use((error, request, response, next) =>
-  response.status(error.status || 500).json({
-    statusCode: error.status || 500,
-    error: error.code || 'UNKNOWN_ERROR',
-    description: error.description || 'Unknown error',
-    message: error.message || 'An error has occurred',
-  })
+    response.status(error.status || 500).json({
+        statusCode: error.status || 500,
+        error: error.code || 'UNKNOWN_ERROR',
+        description: error.description || 'Unknown error',
+        message: error.message || 'An error has occurred',
+    })
 );
 
 module.exports = app;
