@@ -5,7 +5,7 @@ const mainURL = 'https://pokeapi.co/api/v2/';
 
 async function processData(data, col, model) {
     wrapper.processData[col](data);
-    model.create(data);
+    return model.create(data);
 }
 
 async function inputAll() {

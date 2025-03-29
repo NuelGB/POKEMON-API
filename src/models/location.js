@@ -1,4 +1,4 @@
-const {NamedAPIResource , names} = require('../utils/common-models');
+const { NamedAPIResource, names } = require('../utils/common-models');
 
 const name = __filename.slice(__dirname.length + 1, -3);
 
@@ -7,17 +7,17 @@ module.exports = (db) =>
         name,
         db.Schema(
             {
-                id : Number,
-                name : String,
-                region : NamedAPIResource,
+                id: Number,
+                name: String,
+                region: NamedAPIResource,
                 names,
-                game_indices : [
+                game_indices: [
                     {
-                        game_index : Number,
-                        generation : NamedAPIResource
-                    }
+                        game_index: Number,
+                        generation: NamedAPIResource,
+                    },
                 ],
-                areas : [NamedAPIResource],
+                areas: [NamedAPIResource],
             },
             {
                 collection: name,

@@ -15,6 +15,7 @@ const CONSTANTS = {
     specLen: 'https://pokeapi.co/api/v2/pokemon-species/'.length,
     triggerLen: 'https://pokeapi.co/api/v2/evolution-trigger/'.length,
     chainLen: 'https://pokeapi.co/api/v2/evolution-chain/'.length,
+    emLen: 'https://pokeapi.co/api/v2/encounter-method/'.length,
     typeLen: 'https://pokeapi.co/api/v2/type/'.length,
     macLen: 'https://pokeapi.co/api/v2/machine/'.length,
     locLen: 'https://pokeapi.co/api/v2/location/'.length,
@@ -22,7 +23,6 @@ const CONSTANTS = {
     regLen: 'https://pokeapi.co/api/v2/region/'.length,
     genLen: 'https://pokeapi.co/api/v2/generation/'.length,
     lrLen: 'https://pokeapi.co/api/v2/location-area/'.length,
-
 };
 
 function URLToInt(object, linkLen) {
@@ -202,27 +202,46 @@ const processData = {
         }
     },
 
-    'item-category' : function(data){
+    'item-category': function (data) {
         for (const i of data.items) {
-            URLToInt(i,CONSTANTS.itemLen);
+            URLToInt(i, CONSTANTS.itemLen);
         }
         for (const i of data.names) {
             URLToInt(i.language, CONSTANTS.langLen);
         }
-        URLToInt(data.pocket , CONSTANTS.pocketLen);
+        URLToInt(data.pocket, CONSTANTS.pocketLen);
     },
 
-    'location' : function(data){
-        if (data.region) URLToInt(data.region , CONSTANTS.regLen);
+    'location': function (data) {
+        if (data.region) URLToInt(data.region, CONSTANTS.regLen);
         for (const i of data.names) {
             URLToInt(i.language, CONSTANTS.langLen);
         }
-        for (const i of data.game_indices){
-            URLToInt(i.generation,CONSTANTS.genLen);
+        for (const i of data.game_indices) {
+            URLToInt(i.generation, CONSTANTS.genLen);
         }
         for (const i of data.areas) {
-            URLToInt(i , CONSTANTS.lrLen);
+            URLToInt(i, CONSTANTS.lrLen);
         }
+    },
+
+    'location-area': function (data) {
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        for (const i of data.encounter_method_rates) {
+            URLToInt(i.encounter_method, CONSTANTS.emLen);
+            for (const j of i.version_details) {
+                URLToInt(j.version, CONSTANTS.verLen);
+            }
+        }
+        for (const i of data.pokemon_encounters) {
+            URLToInt(i.pokemon, CONSTANTS.pokeLen);
+            for (const j of i.version_details) {
+                URLToInt(j.version, CONSTANTS.verLen);
+            }
+        }
+        URLToInt(data.location, CONSTANTS.locLen);
     },
 };
 
