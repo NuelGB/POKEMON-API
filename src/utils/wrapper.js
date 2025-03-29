@@ -5,21 +5,25 @@ const CONSTANTS = {
     ifeLen: 'https://pokeapi.co/api/v2/item-fling-effect/'.length,
     catLen: 'https://pokeapi.co/api/v2/item-category/'.length,
     attLen: 'https://pokeapi.co/api/v2/item-attribute/'.length,
+    pocketLen: 'https://pokeapi.co/api/v2/item-pocket/'.length,
     ngtLen: 'https://pokeapi.co/api/v2/type/'.length,
     langLen: 'https://pokeapi.co/api/v2/language/'.length,
     verLen: 'https://pokeapi.co/api/v2/version/'.length,
     vgLen: 'https://pokeapi.co/api/v2/version-group/'.length,
     moveLen: 'https://pokeapi.co/api/v2/move/'.length,
+    mdcLen: 'https://pokeapi.co/api/v2/move-damage-class/'.length,
     pokeLen: 'https://pokeapi.co/api/v2/pokemon/'.length,
     specLen: 'https://pokeapi.co/api/v2/pokemon-species/'.length,
     triggerLen: 'https://pokeapi.co/api/v2/evolution-trigger/'.length,
     chainLen: 'https://pokeapi.co/api/v2/evolution-chain/'.length,
+    emLen: 'https://pokeapi.co/api/v2/encounter-method/'.length,
     typeLen: 'https://pokeapi.co/api/v2/type/'.length,
     macLen: 'https://pokeapi.co/api/v2/machine/'.length,
     locLen: 'https://pokeapi.co/api/v2/location/'.length,
     abiLen: 'https://pokeapi.co/api/v2/ability/'.length,
     regLen: 'https://pokeapi.co/api/v2/region/'.length,
     genLen: 'https://pokeapi.co/api/v2/generation/'.length,
+    lrLen: 'https://pokeapi.co/api/v2/location-area/'.length,
 };
 
 function URLToInt(object, linkLen) {
@@ -77,6 +81,14 @@ const processData = {
         for (const i of data.names) {
             URLToInt(i.language, CONSTANTS.langLen);
         }
+        for (const i of data.moves) {
+            URLToInt(i, CONSTANTS.moveLen);
+        }
+        for (const i of data.descriptions) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+    },
+    'move-category': function (data) {
         for (const i of data.moves) {
             URLToInt(i, CONSTANTS.moveLen);
         }
@@ -196,6 +208,79 @@ const processData = {
         for (const i of data.machines) {
             URLToInt(i.machine, CONSTANTS.macLen);
             URLToInt(i.version_group, CONSTANTS.vgLen);
+        }
+    },
+
+    'item-category': function (data) {
+        for (const i of data.items) {
+            URLToInt(i, CONSTANTS.itemLen);
+        }
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        URLToInt(data.pocket, CONSTANTS.pocketLen);
+    },
+
+    'location': function (data) {
+        if (data.region) URLToInt(data.region, CONSTANTS.regLen);
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        for (const i of data.game_indices) {
+            URLToInt(i.generation, CONSTANTS.genLen);
+        }
+        for (const i of data.areas) {
+            URLToInt(i, CONSTANTS.lrLen);
+        }
+    },
+
+    'location-area': function (data) {
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        for (const i of data.encounter_method_rates) {
+            URLToInt(i.encounter_method, CONSTANTS.emLen);
+            for (const j of i.version_details) {
+                URLToInt(j.version, CONSTANTS.verLen);
+            }
+        }
+        for (const i of data.pokemon_encounters) {
+            URLToInt(i.pokemon, CONSTANTS.pokeLen);
+            for (const j of i.version_details) {
+                URLToInt(j.version, CONSTANTS.verLen);
+            }
+        }
+        URLToInt(data.location, CONSTANTS.locLen);
+    },
+
+    'type': function (data) {
+        for (const rel in data.damage_relations) {
+            for (const i of data.damage_relations[rel]) {
+                URLToInt(i, CONSTANTS.typeLen);
+            }
+        }
+        for (const past in data.past_damage_relations) {
+            if (past.generation) URLToInt(past.generation, CONSTANTS.genLen);
+            for (const rel in past.damage_relations) {
+                for (const i of past.damage_relations[rel]) {
+                    URLToInt(i, CONSTANTS.typeLen);
+                }
+            }
+        }
+        for (const i of data.game_indices) {
+            URLToInt(i.generation, CONSTANTS.genLen);
+        }
+        URLToInt(data.generation, CONSTANTS.genLen);
+        if (data.move_damage_class)
+            URLToInt(data.move_damage_class, CONSTANTS.mdcLen);
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        for (const i of data.pokemon) {
+            URLToInt(i.pokemon, CONSTANTS.pokeLen);
+        }
+        for (const i of data.moves) {
+            URLToInt(i, CONSTANTS.moveLen);
         }
     },
 };

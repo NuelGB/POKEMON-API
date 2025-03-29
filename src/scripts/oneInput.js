@@ -3,11 +3,11 @@ const wrapper = require('../utils/wrapper');
 
 const mainURL = 'https://pokeapi.co/api/v2/';
 
-const testModel = 'item';
+const testModel = 'type';
 
 async function processData(data, col, model) {
     wrapper.processData[col](data);
-    model.create(data);
+    return model.create(data);
 }
 
 async function inputAll() {
@@ -19,14 +19,20 @@ async function inputAll() {
         res.json()
     );
 
-    const promises = [];
+    console.log('Data fetched');
+    let i = 1;
     for (const item of listOfItems.results) {
         const tempURL = `${url}/${item.url.slice(ULen, -1)}/`;
-        const data = await fetch(tempURL).then((res) => res.json());
-        promises.push(processData(data, testModel, m));
+        try {
+            const data = await fetch(tempURL).then((res) => res.json());
+            processData(data, testModel, m).then(() => console.log(i++));
+        } catch (err) {
+            console.log(err);
+            console.log(`Error happened at id ${i++}`);
+            models.db.close();
+            return;
+        }
     }
-    const result = await Promise.all(promises);
-    console.log(result);
     console.log(`${testModel} done`);
 }
 
