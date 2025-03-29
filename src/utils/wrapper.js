@@ -87,6 +87,14 @@ const processData = {
             URLToInt(i.language, CONSTANTS.langLen);
         }
     },
+    'move-category': function (data) {
+        for (const i of data.moves) {
+            URLToInt(i, CONSTANTS.moveLen);
+        }
+        for (const i of data.descriptions) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+    },
 
     'contest-type': function (data) {
         for (const i of data.names) {
