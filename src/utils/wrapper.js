@@ -21,6 +21,8 @@ const CONSTANTS = {
     abiLen: 'https://pokeapi.co/api/v2/ability/'.length,
     regLen: 'https://pokeapi.co/api/v2/region/'.length,
     genLen: 'https://pokeapi.co/api/v2/generation/'.length,
+    lrLen: 'https://pokeapi.co/api/v2/location-area/'.length,
+
 };
 
 function URLToInt(object, linkLen) {
@@ -208,6 +210,19 @@ const processData = {
             URLToInt(i.language, CONSTANTS.langLen);
         }
         URLToInt(data.pocket , CONSTANTS.pocketLen);
+    },
+
+    'location' : function(data){
+        if (data.region) URLToInt(data.region , CONSTANTS.regLen);
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        for (const i of data.game_indices){
+            URLToInt(i.generation,CONSTANTS.genLen);
+        }
+        for (const i of data.areas) {
+            URLToInt(i , CONSTANTS.lrLen);
+        }
     },
 };
 
