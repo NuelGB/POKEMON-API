@@ -5,8 +5,8 @@ const mainURL = 'https://pokeapi.co/api/v2/';
 
 const testModel = 'type';
 
-async function processData(data, col, model) {
-    wrapper.processData[col](data);
+async function processData(data, model) {
+    wrapper(data);
     return model.create(data);
 }
 
@@ -25,7 +25,7 @@ async function inputAll() {
         const tempURL = `${url}/${item.url.slice(ULen, -1)}/`;
         try {
             const data = await fetch(tempURL).then((res) => res.json());
-            processData(data, testModel, m).then(() => console.log(i++));
+            processData(data, m).then(() => console.log(i++));
         } catch (err) {
             console.log(err);
             console.log(`Error happened at id ${i++}`);
