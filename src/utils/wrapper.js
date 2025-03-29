@@ -11,6 +11,7 @@ const CONSTANTS = {
     verLen: 'https://pokeapi.co/api/v2/version/'.length,
     vgLen: 'https://pokeapi.co/api/v2/version-group/'.length,
     moveLen: 'https://pokeapi.co/api/v2/move/'.length,
+    mdcLen: 'https://pokeapi.co/api/v2/move-damage-class/'.length,
     pokeLen: 'https://pokeapi.co/api/v2/pokemon/'.length,
     specLen: 'https://pokeapi.co/api/v2/pokemon-species/'.length,
     triggerLen: 'https://pokeapi.co/api/v2/evolution-trigger/'.length,
@@ -250,6 +251,37 @@ const processData = {
             }
         }
         URLToInt(data.location, CONSTANTS.locLen);
+    },
+
+    'type': function (data) {
+        for (const rel in data.damage_relations) {
+            for (const i of data.damage_relations[rel]) {
+                URLToInt(i, CONSTANTS.typeLen);
+            }
+        }
+        for (const past in data.past_damage_relations) {
+            if (past.generation) URLToInt(past.generation, CONSTANTS.genLen);
+            for (const rel in past.damage_relations) {
+                for (const i of past.damage_relations[rel]) {
+                    URLToInt(i, CONSTANTS.typeLen);
+                }
+            }
+        }
+        for (const i of data.game_indices) {
+            URLToInt(i.generation, CONSTANTS.genLen);
+        }
+        URLToInt(data.generation, CONSTANTS.genLen);
+        if (data.move_damage_class)
+            URLToInt(data.move_damage_class, CONSTANTS.mdcLen);
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        for (const i of data.pokemon) {
+            URLToInt(i.pokemon, CONSTANTS.pokeLen);
+        }
+        for (const i of data.moves) {
+            URLToInt(i, CONSTANTS.moveLen);
+        }
     },
 };
 
