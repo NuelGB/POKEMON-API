@@ -5,6 +5,7 @@ const CONSTANTS = {
     ifeLen: 'https://pokeapi.co/api/v2/item-fling-effect/'.length,
     catLen: 'https://pokeapi.co/api/v2/item-category/'.length,
     attLen: 'https://pokeapi.co/api/v2/item-attribute/'.length,
+    pocketLen: 'https://pokeapi.co/api/v2/item-pocket/'.length,
     ngtLen: 'https://pokeapi.co/api/v2/type/'.length,
     langLen: 'https://pokeapi.co/api/v2/language/'.length,
     verLen: 'https://pokeapi.co/api/v2/version/'.length,
@@ -197,6 +198,16 @@ const processData = {
             URLToInt(i.machine, CONSTANTS.macLen);
             URLToInt(i.version_group, CONSTANTS.vgLen);
         }
+    },
+
+    'item-category' : function(data){
+        for (const i of data.items) {
+            URLToInt(i,CONSTANTS.itemLen);
+        }
+        for (const i of data.names) {
+            URLToInt(i.language, CONSTANTS.langLen);
+        }
+        URLToInt(data.pocket , CONSTANTS.pocketLen);
     },
 };
 

@@ -3,7 +3,7 @@ const wrapper = require('../utils/wrapper');
 
 const mainURL = 'https://pokeapi.co/api/v2/';
 
-const testModel = 'item';
+const testModel = 'item-category';
 
 async function processData(data, col, model) {
     wrapper.processData[col](data);
