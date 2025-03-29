@@ -6,7 +6,7 @@ async function clearDB() {
     const dropped = [];
 
     for (const i in models) {
-        if (i !== 'db' && i !== 'template') {
+        if (i !== 'db') {
             dropped.push(db.dropCollection(i));
             console.log(`${i} being dropped.`);
         }
