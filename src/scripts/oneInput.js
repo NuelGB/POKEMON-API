@@ -3,7 +3,7 @@ const wrapper = require('../utils/wrapper');
 
 const mainURL = 'https://pokeapi.co/api/v2/';
 
-const testModel = 'move';
+const testModel = 'evolution-chain';
 
 async function processData(data, model) {
     wrapper(data);
