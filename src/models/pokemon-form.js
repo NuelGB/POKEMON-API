@@ -19,7 +19,7 @@ module.exports = (db) =>
                 types: [
                     {
                         slot: Number,
-                        type: NamedAPIResource,
+                        type_: NamedAPIResource,
                     },
                 ],
                 sprites: {

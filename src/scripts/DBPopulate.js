@@ -20,20 +20,13 @@ async function inputAll() {
             res.json()
         );
 
-        const promises = [];
+        let i = 1;
         for (const item of listOfItems.results) {
             const tempURL = `${url}/${item.url.slice(ULen, -1)}/`;
             const data = await fetch(tempURL).then((res) => res.json());
-            promises.push(processData(data, m));
+            processData(data, m).then(() => console.log(i++));
         }
-        p.push(promises);
         console.log(`${modelName} Added`);
-    }
-
-    let ix = 1;
-    for (const i of p) {
-        await Promise.all(i);
-        console.log(`${ix++} collections finished!`);
     }
 }
 
