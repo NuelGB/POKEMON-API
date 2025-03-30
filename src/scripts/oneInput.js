@@ -3,7 +3,7 @@ const wrapper = require('../utils/wrapper');
 
 const mainURL = 'https://pokeapi.co/api/v2/';
 
-const testModel = 'pokemon';
+const testModel = 'pokemon-form';
 
 async function processData(data, model) {
     wrapper(data);

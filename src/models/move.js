@@ -92,7 +92,7 @@ module.exports = (db) =>
                                 language: NamedAPIResource,
                             },
                         ],
-                        type: NamedAPIResource,
+                        type_: NamedAPIResource,
                         version_group: NamedAPIResource,
                     },
                 ],
@@ -104,7 +104,7 @@ module.exports = (db) =>
                 ],
                 super_contest_effect: { id: Number },
                 target: NamedAPIResource,
-                type: NamedAPIResource,
+                type_: NamedAPIResource,
             },
             {
                 collection: name,

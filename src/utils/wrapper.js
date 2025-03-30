@@ -2,6 +2,12 @@
 function URLToInt(obj) {
     // Loop over every attribute of the object
     for (const i in obj) {
+        //type is a reserved mongoose keyword. Change to type_
+        if (i === 'type') {
+            obj.type_ = obj.type;
+            delete obj.type;
+        }
+        
         // If attribute is url, then we assign an id to the object based on the number at the end
         // of the url
         if (i === 'url' && obj[i] !== null) {
