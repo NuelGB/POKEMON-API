@@ -8,5 +8,5 @@ module.exports = (app) => {
     app.use('/', route);
 
     route.get('/:name', controller.getList);
-    route.get('/' , controller.getEndpoints)
+    route.get('/', controller.getEndpoints);
 };
