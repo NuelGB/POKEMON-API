@@ -116,21 +116,6 @@ const errorTypes = {
         status: 401,
         code: 'PARSE_TOKEN_ERROR',
     },
-    EMAIL_ALREADY_TAKEN: {
-        description: 'This email already taken, try use another',
-        status: 409,
-        code: 'EMAIL_ALREADY_TAKEN_ERROR',
-    },
-    SEND_EMAIL: {
-        description: 'Send email error',
-        status: 500,
-        code: 'SEND_EMAIL_ERROR',
-    },
-    DECRYPTION: {
-        description: 'Decryption error',
-        status: 500,
-        code: 'DECRYPTION_ERROR',
-    },
     ROUTE_NOT_FOUND: {
         description: 'Route not found',
         status: 404,
