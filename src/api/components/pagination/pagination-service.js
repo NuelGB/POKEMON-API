@@ -7,7 +7,7 @@ async function getMetaData(m, limit, offset) {
 
     let next = null;
 
-    if (offset + limit <= count - 1 && offset > 0 && limit > 0) {
+    if (offset + limit <= count - 1 && offset >= 0 && limit >= 0) {
         if (limit > count - limit) {
             next = `limit=${count - limit}&offset=${offset + limit}`;
         } else {
@@ -17,7 +17,7 @@ async function getMetaData(m, limit, offset) {
 
     let previous = null;
 
-    if (offset > 0 && limit > 0) {
+    if (offset > 0 && limit >= 0) {
         if (offset - limit > 0) {
             previous = `limit=${limit}&offset=${offset - limit}`;
         } else {
