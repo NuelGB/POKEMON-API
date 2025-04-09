@@ -4,6 +4,7 @@ const template = require('./components/template/route');
 const pagination = require('./components/pagination/pagination-route');
 const evoChain = require('./components/evolution-chain/evolution-chain-route');
 const berry = require('./components/berry/berry-route');
+const contestEffect = require('./components/contest-effect/contest-effect-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -12,6 +13,7 @@ module.exports = () => {
     pagination(app);
     evoChain(app);
     berry(app);
+    contestEffect(app);
 
     return app;
 };
