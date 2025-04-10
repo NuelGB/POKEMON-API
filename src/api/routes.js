@@ -8,6 +8,7 @@ const contestEffect = require('./components/contest-effect/contest-effect-route'
 const contestType = require('./components/contest-type/contest-type-route');
 const encounterMethod = require('./components/encounter-method/encounter-emthod-route');
 const evoTrig = require('./components/evolution-trigger/evolution-trigger-route');
+const generation = require('./components/generation/generation-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -20,6 +21,7 @@ module.exports = () => {
     contestType(app);
     encounterMethod(app);
     evoTrig(app);
+    generation(app);
 
     return app;
 };
