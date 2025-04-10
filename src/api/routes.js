@@ -6,6 +6,7 @@ const evoChain = require('./components/evolution-chain/evolution-chain-route');
 const berry = require('./components/berry/berry-route');
 const contestEffect = require('./components/contest-effect/contest-effect-route');
 const contestType = require('./components/contest-type/contest-type-route');
+const encounterMethod = require('./components/encounter-method/encounter-emthod-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -16,6 +17,7 @@ module.exports = () => {
     berry(app);
     contestEffect(app);
     contestType(app);
+    encounterMethod(app);
 
     return app;
 };
