@@ -10,6 +10,8 @@ const encounterMethod = require('./components/encounter-method/encounter-emthod-
 const evoTrig = require('./components/evolution-trigger/evolution-trigger-route');
 const generation = require('./components/generation/generation-route');
 const language = require('./components/language/language-route');
+const pokemon = require('./components/pokemon/pokemon-route');
+
 
 module.exports = () => {
     const app = express.Router();
@@ -24,6 +26,8 @@ module.exports = () => {
     evoTrig(app);
     generation(app);
     language(app);
+    pokemon(app);
+
 
     return app;
 };
