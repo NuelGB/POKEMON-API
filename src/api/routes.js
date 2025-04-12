@@ -4,6 +4,7 @@ const express = require('express');
 const template = require('./components/template/route');
 const pagination = require('./components/pagination/pagination-route');
 const evoChain = require('./components/evolution-chain/evolution-chain-route');
+const abilities = require('./components/abilities/abilities-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -12,6 +13,6 @@ module.exports = () => {
     template(app);
     pagination(app);
     evoChain(app);
-
+    abilities(app);
     return app;
 };
