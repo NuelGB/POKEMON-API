@@ -16,23 +16,11 @@ async function getAll(request, response, next) {
     }
 }
 
-async function getByID(request, response, next) {
+async function getBy(request, response, next) {
     try {
-        const { id } = request.params;
+        const { other } = request.params;
 
-        const postedDocument = await service.getByID(Number(id));
-
-        return response.status(200).json(postedDocument);
-    } catch (error) {
-        return next(error);
-    }
-}
-
-async function getByName(request, response, next) {
-    try {
-        const { name } = request.params;
-
-        const postedDocument = await service.getByName(name);
+        const postedDocument = await service.getBy(other);
 
         return response.status(200).json(postedDocument);
     } catch (error) {
@@ -42,6 +30,5 @@ async function getByName(request, response, next) {
 
 module.exports = {
     getAll,
-    getByID,
-    getByName,
+    getBy,
 };
