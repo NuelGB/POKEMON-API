@@ -1,16 +1,17 @@
-const service = require('./pokemon-service');
+const service = require('./pokemon-form-service');
 
-async function getAll(request, response, next) {
+async function getPokemonForm(request, response, next) {
     try {
         const { offset, limit } = request.query;
         const offsetValue = Number(offset) || 0;
         const limitValue = Number(limit) || 10;
-        const postedDocument = await service.getPokemon(
+
+        const postedDocuments = await service.getPokemonForm(
             offsetValue,
             limitValue
         );
 
-        return response.status(200).json(postedDocument);
+        return response.status(200).json(postedDocuments);
     } catch (error) {
         return next(error);
     }
@@ -29,6 +30,6 @@ async function getBy(request, response, next) {
 }
 
 module.exports = {
-    getAll,
+    getPokemonForm,
     getBy,
 };

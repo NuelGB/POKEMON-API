@@ -4,16 +4,15 @@ async function getPokemon(offset, limit) {
     return repository.getPokemon(offset, limit);
 }
 
-async function getByID(id) {
-    return repository.getByID(id);
-}
-
-async function getByName(name) {
-    return repository.getByName(name);
+async function getBy(other) {
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(Number(other))) {
+        return repository.getByID(other);
+    }
+    return repository.getByName(other);
 }
 
 module.exports = {
     getPokemon,
-    getByID,
-    getByName,
+    getBy,
 };
