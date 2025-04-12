@@ -1,0 +1,11 @@
+const express = require('express');
+
+const controller = require('./contest-effect-controller');
+
+const route = express.Router();
+
+module.exports = (app) => {
+    app.use('/contest-effect', route);
+
+    route.get('/:str', controller.get);
+};
