@@ -12,6 +12,7 @@ const generation = require('./components/generation/generation-route');
 const language = require('./components/language/language-route');
 const pokemon = require('./components/pokemon/pokemon-route');
 const pokemonForm = require('./components/pokemon-form/pokemon-form-route');
+const pokemonHabitat = require('./components/pokemon-habitat/pokemon-habitat-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -28,6 +29,7 @@ module.exports = () => {
     language(app);
     pokemon(app);
     pokemonForm(app);
+    pokemonHabitat(app);
 
     return app;
 };
