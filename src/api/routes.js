@@ -11,7 +11,7 @@ const evoTrig = require('./components/evolution-trigger/evolution-trigger-route'
 const generation = require('./components/generation/generation-route');
 const language = require('./components/language/language-route');
 const pokemon = require('./components/pokemon/pokemon-route');
-
+const pokemonForm = require('./components/pokemon-form/pokemon-form-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -27,7 +27,7 @@ module.exports = () => {
     generation(app);
     language(app);
     pokemon(app);
-
+    pokemonForm(app);
 
     return app;
 };
