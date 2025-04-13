@@ -7,12 +7,12 @@ async function getByID(id) {
         {
             // '_id': 0,
             // '__v': 0,
-            // 'chain.evolves_to.evolution_details._id': 0,
-            // 'chain.evolves_to._id': 0,
-            // 'chain.evolves_to.evolves_to._id': 0,
-            // 'chain.evolves_to.evolves_to.evolution_details._id': 0,
-            // 'chain.evolves_to.evolves_to.evolves_to._id': 0,
-            // 'chain.evolves_to.evolves_to.evolves_to.evolution_details._id': 0,
+            // 'descriptions._id': 0,
+            // 'descriptions.language._id': 0,
+            // 'names._id': 0,
+            // 'names.language._id': 0,
+            // 'types._id': 0,
+            // 'types.abilities._id': 0,
         }
     );
 }

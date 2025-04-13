@@ -1,10 +1,10 @@
 const express = require('express');
 
-const controller = require('./ability-controller');
+const controller = require('./growth-rate-controller');
 
 const route = express.Router();
 
 module.exports = (app) => {
-    app.use('/ability', route);
+    app.use('/growth-rate', route);
     route.get('/:str', controller.getBy);
 };

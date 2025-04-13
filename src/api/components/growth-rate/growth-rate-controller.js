@@ -1,4 +1,4 @@
-const service = require('./move-category-service');
+const service = require('./growth-rate-service');
 
 async function getBy(request, response, next) {
     try {
