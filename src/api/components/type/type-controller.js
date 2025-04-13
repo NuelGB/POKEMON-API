@@ -1,13 +1,15 @@
 const service = require('./type-service');
+const { errorTypes, errorResponder } = require('../../../core/errors');
 
 async function getTypes(request, response, next) {
     try {
         const { offset, limit } = request.query;
         if (offset !== undefined && limit !== undefined) {
             if (Number.isNaN(Number(offset)) || Number.isNaN(Number(limit))) {
-                return response
-                    .status(400)
-                    .json({ message: 'Offset and limit must be numbers' });
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Offset and limit must be numbers'
+                );
             }
 
             if (
@@ -16,9 +18,10 @@ async function getTypes(request, response, next) {
                 !Number.isInteger(Number(offset)) ||
                 !Number.isInteger(Number(limit))
             ) {
-                return response.status(400).json({
-                    message: 'Offset and limit must be positive numbers',
-                });
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Offset and limit must be positive integers'
+                );
             }
         }
         const offsetValue = Number(offset) || 0;
@@ -37,7 +40,7 @@ async function getBy(request, response, next) {
         const type = await service.getBy(other);
 
         if (!type) {
-            return response.status(404).json({ message: 'Type not found' });
+            throw errorResponder(errorTypes.BAD_REQUEST, `Type not found`);
         }
         return response.status(200).json(type);
     } catch (error) {

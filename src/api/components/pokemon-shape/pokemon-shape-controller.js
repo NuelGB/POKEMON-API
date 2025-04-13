@@ -1,4 +1,5 @@
 const service = require('./pokemon-shape-service');
+const { errorTypes, errorResponder } = require('../../../core/errors');
 
 async function getPokemonShape(request, response, next) {
     try {
@@ -6,9 +7,10 @@ async function getPokemonShape(request, response, next) {
 
         if (offset !== undefined && limit !== undefined) {
             if (Number.isNaN(Number(offset)) || Number.isNaN(Number(limit))) {
-                return response
-                    .status(400)
-                    .json({ message: 'Offset and limit must be numbers' });
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Offset and limit must be numbers'
+                );
             }
 
             if (
@@ -17,19 +19,20 @@ async function getPokemonShape(request, response, next) {
                 !Number.isInteger(Number(offset)) ||
                 !Number.isInteger(Number(limit))
             ) {
-                return response.status(400).json({
-                    message: 'Offset and limit must be positive integers',
-                });
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Offset and limit must be positive integers'
+                );
             }
         }
 
         const offsetNumber = Number(offset) || 0;
         const limitNumber = Number(limit) || 10;
-        const postedDocument = await service.getPokemonShape(
+        const pokemonShape = await service.getPokemonShape(
             offsetNumber,
             limitNumber
         );
-        return response.status(200).json(postedDocument);
+        return response.status(200).json(pokemonShape);
     } catch (error) {
         return next(error);
     }
@@ -39,15 +42,16 @@ async function getBy(request, response, next) {
     try {
         const { other } = request.params;
 
-        const postedDocument = await service.getBy(other);
+        const pokemonShape = await service.getBy(other);
 
-        if (!postedDocument) {
-            return response
-                .status(404)
-                .json({ message: 'Pokemon shape not found' });
+        if (!pokemonShape) {
+            throw errorResponder(
+                errorTypes.BAD_REQUEST,
+                `Pokemon shape not found`
+            );
         }
 
-        return response.status(200).json(postedDocument);
+        return response.status(200).json(pokemonShape);
     } catch (error) {
         return next(error);
     }

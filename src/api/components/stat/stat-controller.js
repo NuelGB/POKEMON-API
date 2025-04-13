@@ -1,13 +1,15 @@
 const service = require('./stat-service');
+const { errorTypes, errorResponder } = require('../../../core/errors');
 
 async function getStats(request, response, next) {
     try {
         const { offset, limit } = request.query;
         if (offset !== undefined && limit !== undefined) {
             if (Number.isNaN(Number(offset)) || Number.isNaN(Number(limit))) {
-                return response
-                    .status(400)
-                    .json({ error: 'Offset and limit must be numbers' });
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Offset and limit must be numbers'
+                );
             }
 
             if (
@@ -16,9 +18,10 @@ async function getStats(request, response, next) {
                 !Number.isInteger(Number(offset)) ||
                 !Number.isInteger(Number(limit))
             ) {
-                return response.status(400).json({
-                    error: 'Offset and limit must be positive numbers',
-                });
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Offset and limit must be positive integers'
+                );
             }
         }
         const offsetValue = Number(offset) || 0;
@@ -37,7 +40,7 @@ async function getBy(request, response, next) {
         const stat = await service.getBy(other);
 
         if (!stat) {
-            return response.status(404).json({ error: 'Stat not found' });
+            throw errorResponder(errorTypes.BAD_REQUEST, `Stat not found`);
         }
         return response.status(200).json(stat);
     } catch (error) {
