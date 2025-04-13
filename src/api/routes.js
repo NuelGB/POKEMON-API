@@ -13,6 +13,7 @@ const language = require('./components/language/language-route');
 const pokemon = require('./components/pokemon/pokemon-route');
 const pokemonForm = require('./components/pokemon-form/pokemon-form-route');
 const pokemonHabitat = require('./components/pokemon-habitat/pokemon-habitat-route');
+const pokemonShape = require('./components/pokemon-shape/pokemon-shape-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -30,6 +31,7 @@ module.exports = () => {
     pokemon(app);
     pokemonForm(app);
     pokemonHabitat(app);
+    pokemonShape(app);
 
     return app;
 };
