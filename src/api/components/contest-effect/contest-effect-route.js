@@ -7,6 +7,6 @@ const route = express.Router();
 module.exports = (app) => {
     app.use('/contest-effect', route);
 
-    route.get('/contest-effects' , controller.getList);
+    route.get('/contest-effects', controller.getList);
     route.get('/:str', controller.get);
 };

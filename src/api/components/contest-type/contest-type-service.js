@@ -7,10 +7,11 @@ async function getItem(name) {
     return repository.getByName(name);
 }
 
-module.exports = {
-    getItem,
-};
+async function getList(offset, limit) {
+    return repository.getList(offset, limit);
+}
 
 module.exports = {
     getItem,
+    getList,
 };
