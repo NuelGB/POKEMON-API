@@ -7,6 +7,11 @@ async function getItem(name) {
     return repository.getByName(name);
 }
 
+async function getList(offset,limit){
+    return repository.getList(offset,limit);
+}
+
 module.exports = {
     getItem,
+    getList,
 };
