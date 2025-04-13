@@ -3,8 +3,6 @@ const service = require('./pokemon-shape-service');
 async function getPokemonShape(request, response, next) {
     try {
         const { offset, limit } = request.query;
-        console.log('offset', offset);
-        console.log('limit', limit);
 
         if (offset !== undefined && limit !== undefined) {
             if (Number.isNaN(Number(offset)) || Number.isNaN(Number(limit))) {
