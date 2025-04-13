@@ -15,6 +15,7 @@ const pokemonForm = require('./components/pokemon-form/pokemon-form-route');
 const pokemonHabitat = require('./components/pokemon-habitat/pokemon-habitat-route');
 const pokemonShape = require('./components/pokemon-shape/pokemon-shape-route');
 const pokemonSpecies = require('./components/pokemon-species/pokemon-species-route');
+const stat = require('./components/stat/stat-route');
 
 module.exports = () => {
     const app = express.Router();
@@ -34,6 +35,7 @@ module.exports = () => {
     pokemonHabitat(app);
     pokemonShape(app);
     pokemonSpecies(app);
+    stat(app);
 
     return app;
 };
