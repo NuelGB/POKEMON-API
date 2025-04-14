@@ -7,5 +7,6 @@ const route = express.Router();
 module.exports = (app) => {
     app.use('/berry', route);
 
+    route.get('/berries', controller.getList);
     route.get('/:str', controller.get);
 };
