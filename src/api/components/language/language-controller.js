@@ -1,11 +1,23 @@
-const service = require('./evolution-chain-service');
+const service = require('./language-service');
 const { errorResponder, errorTypes } = require('../../../core/errors');
 
-async function getBy(request, response, next) {
+async function get(request, response, next) {
     try {
         const { str } = request.params;
 
-        const postedDocument = await service.getItem(Number(str));
+        const postedDocument = await service.getItem(str);
+
+        return response.status(200).json(postedDocument);
+    } catch (error) {
+        return next(error);
+    }
+}
+
+async function get(request, response, next) {
+    try {
+        const { str } = request.params;
+
+        const postedDocument = await service.getItem(str);
 
         return response.status(200).json(postedDocument);
     } catch (error) {
@@ -38,6 +50,6 @@ async function getList(request, response, next) {
 }
 
 module.exports = {
-    getBy,
+    get,
     getList,
 };
