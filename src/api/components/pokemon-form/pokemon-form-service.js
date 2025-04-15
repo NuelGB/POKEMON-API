@@ -5,7 +5,7 @@ async function getPokemonForm(offset, limit) {
 }
 
 async function getBy(other) {
-    if (Number.isNaN(Number(other))) {
+    if (!Number.isNaN(Number(other))) {
         return repository.getByID(Number(other));
     }
     return repository.getByName(other);
