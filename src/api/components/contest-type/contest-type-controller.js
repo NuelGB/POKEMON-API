@@ -1,5 +1,5 @@
 const service = require('./contest-type-service');
-const {generateGetListFunc} = require('../../../utils/generate');
+const { generateGetListFunc } = require('../../../utils/generate');
 
 async function getBy(request, response, next) {
     try {

@@ -1,4 +1,5 @@
 const service = require('./characteristic-service');
+const { generateGetListFunc } = require('../../../utils/generate');
 
 async function getBy(request, response, next) {
     try {
@@ -12,6 +13,9 @@ async function getBy(request, response, next) {
     }
 }
 
+const getList = generateGetListFunc(service.getList);
+
 module.exports = {
     getBy,
+    getList,
 };

@@ -1,7 +1,6 @@
 const { characteristic } = require('../../../models');
 
 async function getByID(id) {
-    // Filter all 3 layers of chainlink to rid of _id
     return characteristic.find(
         { id },
         {
@@ -12,6 +11,18 @@ async function getByID(id) {
     );
 }
 
+async function getList(offset,limit){
+    return characteristic.find(
+        {},
+        {
+            '_id': 0,
+            '__v': 0,
+            'descriptions._id': 0,
+        }
+    ).skip(offset).limit(limit);
+}
+
 module.exports = {
     getByID,
+    getList,
 };

@@ -1,5 +1,5 @@
 const service = require('./berry-service');
-const {generateGetListFunc} = require('../../../utils/generate');
+const { generateGetListFunc } = require('../../../utils/generate');
 
 async function get(request, response, next) {
     try {

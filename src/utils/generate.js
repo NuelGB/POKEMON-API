@@ -1,7 +1,7 @@
 const { errorResponder, errorTypes } = require('../core/errors');
 
-function generateGetListFunc(getList){
-    return async (request, response , next) =>{
+function generateGetListFunc(getList) {
+    return async (request, response, next) => {
         try {
             let { offset, limit } = request.query;
             for (const i of [offset, limit]) {
@@ -28,9 +28,9 @@ function generateGetListFunc(getList){
             }
             offset = Number(offset) || 0;
             limit = Number(limit) || 10;
-    
+
             const doc = await getList(offset, limit);
-    
+
             return response.status(200).json({
                 offset,
                 limit,
@@ -39,7 +39,7 @@ function generateGetListFunc(getList){
         } catch (error) {
             return next(error);
         }
-    }
+    };
 }
 
 module.exports = {
