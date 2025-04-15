@@ -1,4 +1,4 @@
-const characteristic = require('../../../models')['characteristic'];
+const { characteristic } = require('../../../models');
 
 async function getByID(id) {
     // Filter all 3 layers of chainlink to rid of _id

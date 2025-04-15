@@ -1,71 +1,17 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 
-const template = require('./components/template/route');
-const pagination = require('./components/pagination/pagination-route');
-const evoChain = require('./components/evolution-chain/evolution-chain-route');
-const ability = require('./components/ability/ability-route');
-const characteristic = require('./components/characteristic/characteristic-route');
-const movetarget = require('./components/move-target/move-target-route');
-const movecategory = require('./components/move-category/move-category-route');
-const movedamageclass = require('./components/move-damage-class/move-damage-class-route');
-const movelearnmethod = require('./components/move-learn-method/move-learn-method-route');
-const growthRate = require('./components/growth-rate/growth-rate-route');
-const item = require('./components/item/item-route');
-const itemAtt = require('./components/item-attribute/item-attribute-route');
-const itemCat = require('./components/item-category/item-category-route');
-const itemFling = require('./components/item-fling-effect/item-fling-effect-route');
-const location = require('./components/location/location-route');
-const locArea = require('./components/location-area/location-area-route');
-const move = require('./components/move/move-route');
-const berry = require('./components/berry/berry-route');
-const contestEffect = require('./components/contest-effect/contest-effect-route');
-const contestType = require('./components/contest-type/contest-type-route');
-const encounterMethod = require('./components/encounter-method/encounter-method-route');
-const evoTrig = require('./components/evolution-trigger/evolution-trigger-route');
-const generation = require('./components/generation/generation-route');
-const language = require('./components/language/language-route');
-const pokemon = require('./components/pokemon/pokemon-route');
-const pokemonForm = require('./components/pokemon-form/pokemon-form-route');
-const pokemonHabitat = require('./components/pokemon-habitat/pokemon-habitat-route');
-const pokemonShape = require('./components/pokemon-shape/pokemon-shape-route');
-const pokemonSpecies = require('./components/pokemon-species/pokemon-species-route');
-const stat = require('./components/stat/stat-route');
-const type = require('./components/type/type-route');
+const components = path.join(__dirname, 'components');
+const names = fs.readdirSync(components);
 
 module.exports = () => {
     const app = express.Router();
 
-    template(app);
-    pagination(app);
-    evoChain(app);
-    ability(app);
-    characteristic(app);
-    movetarget(app);
-    movecategory(app);
-    movedamageclass(app);
-    movelearnmethod(app);
-    growthRate(app);
-    item(app);
-    itemAtt(app);
-    itemCat(app);
-    itemFling(app);
-    location(app);
-    locArea(app);
-    move(app);
-    berry(app);
-    contestEffect(app);
-    contestType(app);
-    encounterMethod(app);
-    evoTrig(app);
-    generation(app);
-    language(app);
-    pokemon(app);
-    pokemonForm(app);
-    pokemonHabitat(app);
-    pokemonShape(app);
-    pokemonSpecies(app);
-    stat(app);
-    type(app);
+    for (const i of names) {
+        const temp = path.join(components, i);
+        require(path.join(temp, `${i}-route`))(app);
+    }
 
     return app;
 };

@@ -1,4 +1,4 @@
-const ability = require('../../../models')['ability'];
+const { ability } = require('../../../models');
 
 async function getByID(id) {
     // Filter all 3 layers of chainlink to rid of _id
@@ -13,7 +13,7 @@ async function getByID(id) {
             'flavor_text_entries._id': 0,
             'names._id': 0,
             'generation._id': 0,
-            'pokemon._id':0,
+            'pokemon._id': 0,
         }
     );
 }
