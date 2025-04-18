@@ -6,5 +6,7 @@ const route = express.Router();
 
 module.exports = (app) => {
     app.use('/move-category', route);
+
+    route.get('/move-categories', controller.getList);
     route.get('/:str', controller.getBy);
 };
