@@ -7,5 +7,6 @@ const route = express.Router();
 module.exports = (app) => {
     app.use('/move', route);
 
+    route.get('/moves', controller.getList);
     route.get('/:str', controller.getBy);
 };

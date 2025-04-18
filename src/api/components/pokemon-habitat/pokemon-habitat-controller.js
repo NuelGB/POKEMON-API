@@ -46,8 +46,8 @@ async function getBy(request, response, next) {
 
         if (!pokemonHabitat) {
             throw errorResponder(
-                errorTypes.BAD_REQUEST,
-                `Pokemon habitat not found`
+                errorTypes.NOT_FOUND,
+                `Pokemon Habitat not found`
             );
         }
 

@@ -1,7 +1,7 @@
 const contestEffect = require('../../../models')['contest-effect'];
 
 async function getByID(id) {
-    return contestEffect.find(
+    return contestEffect.findOne(
         { id },
         {
             '_id': 0,
@@ -23,6 +23,7 @@ async function getList(offset, limit) {
                 'flavor_text_entries._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

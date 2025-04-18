@@ -46,8 +46,8 @@ async function getBy(request, response, next) {
 
         if (!pokemonShape) {
             throw errorResponder(
-                errorTypes.BAD_REQUEST,
-                `Pokemon shape not found`
+                errorTypes.NOT_FOUND,
+                `Pokemon Shape not found`
             );
         }
 

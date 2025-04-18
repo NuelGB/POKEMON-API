@@ -6,6 +6,6 @@ const router = express.Router();
 
 module.exports = (app) => {
     app.use('/pokemon-shape', router);
-    router.get('/pokemon-shape', controller.getPokemonShape);
+    router.get('/pokemon-shapes', controller.getPokemonShape);
     router.get('/:other', controller.getBy);
 };

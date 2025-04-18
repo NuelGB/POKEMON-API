@@ -40,7 +40,7 @@ async function getBy(request, response, next) {
         const stat = await service.getBy(other);
 
         if (!stat) {
-            throw errorResponder(errorTypes.BAD_REQUEST, `Stat not found`);
+            throw errorResponder(errorTypes.NOT_FOUND, `Stat not found`);
         }
         return response.status(200).json(stat);
     } catch (error) {

@@ -19,6 +19,7 @@ async function getTypes(offset, limit) {
                 'damage_relations.no_damage_from._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

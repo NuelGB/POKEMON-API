@@ -11,6 +11,8 @@ async function getPokemon(offset, limit) {
             weight: 1,
         }
     )
+
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

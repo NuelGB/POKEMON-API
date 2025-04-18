@@ -5,7 +5,7 @@ async function getCount(m) {
 }
 
 async function getList(m) {
-    return models[m].find({}, { id: 1, _id: 0 });
+    return models[m].find({}, { id: 1, name: 1, _id: 0 }).sort({ id: 1 });
 }
 
 async function getEndpoints() {

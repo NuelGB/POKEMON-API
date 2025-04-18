@@ -1,7 +1,7 @@
 const contestType = require('../../../models')['contest-type'];
 
 async function getByName(name) {
-    return contestType.find(
+    return contestType.findOne(
         { name },
         {
             '_id': 0,
@@ -12,7 +12,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return contestType.find(
+    return contestType.findOne(
         { id },
         {
             '_id': 0,
@@ -32,6 +32,7 @@ async function getList(offset, limit) {
                 'names._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

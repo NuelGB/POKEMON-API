@@ -6,6 +6,6 @@ const router = express.Router();
 
 module.exports = (app) => {
     app.use('/pokemon-habitat', router);
-    router.get('/pokemon-habitat', controller.getPokemonHabitat);
+    router.get('/pokemon-habitats', controller.getPokemonHabitat);
     router.get('/:other', controller.getBy);
 };

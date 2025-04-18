@@ -1,37 +1,52 @@
 const service = require('./generation-service');
-const { errorResponder, errorTypes } = require('../../../core/errors');
+const { errorTypes, errorResponder } = require('../../../core/errors');
+
+async function getList(request, response, next) {
+    try {
+        let { offset, limit } = request.query;
+        for (const i of [offset, limit]) {
+            if (i === undefined) continue;
+            const num = Number(i);
+            if (Number.isNaN(num)) {
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Query arguments must be numbers!'
+                );
+            }
+            if (num < 0) {
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    `Query arguments cannot be negative!`
+                );
+            }
+            if (!Number.isInteger(num)) {
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Query arguments must be integers!'
+                );
+            }
+        }
+        offset = Number(offset) || 0;
+        limit = Number(limit) || 10;
+
+        const doc = await service.getList(offset, limit);
+
+        return response.status(200).json(doc);
+    } catch (error) {
+        return next(error);
+    }
+}
 
 async function get(request, response, next) {
     try {
         const { str } = request.params;
 
         const postedDocument = await service.getItem(str);
-
-        return response.status(200).json(postedDocument);
-    } catch (error) {
-        return next(error);
-    }
-}
-
-async function getList(request, response, next) {
-    try {
-        const offset = Number(request.query.offset) || 0;
-        const limit = Number(request.query.limit) || 20;
-
-        if (offset < 0 || limit < 0) {
-            throw errorResponder(
-                errorTypes.ARGUMENT_TYPE,
-                `Query arguments cannot be negative!`
-            );
+        if (!postedDocument) {
+            throw errorResponder(errorTypes.NOT_FOUND, `Generation not found`);
         }
 
-        const doc = await service.getList(offset, limit);
-
-        return response.status(200).json({
-            offset,
-            limit,
-            data: doc,
-        });
+        return response.status(200).json(postedDocument);
     } catch (error) {
         return next(error);
     }

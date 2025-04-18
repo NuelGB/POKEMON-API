@@ -2,7 +2,7 @@ const evoChain = require('../../../models')['evolution-chain'];
 
 async function getByID(id) {
     // Filter all 3 layers of chainlink to rid of _id
-    return evoChain.find(
+    return evoChain.findOne(
         { id },
         {
             '_id': 0,
@@ -32,6 +32,7 @@ async function getList(offset, limit) {
                 'chain.evolves_to.evolves_to.evolves_to.evolution_details._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }
