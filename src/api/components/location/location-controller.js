@@ -31,11 +31,7 @@ async function getList(request, response, next) {
 
         const doc = await service.getList(offset, limit);
 
-        return response.status(200).json({
-            offset,
-            limit,
-            data: doc,
-        });
+        return response.status(200).json(doc);
     } catch (error) {
         return next(error);
     }

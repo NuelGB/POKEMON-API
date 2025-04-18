@@ -5,7 +5,7 @@ async function getItem(ID) {
 }
 
 async function getList(offset, limit) {
-    return repository.getList(offset, limit);
+    return { offset, limit, results: await repository.getList(offset, limit) };
 }
 
 module.exports = {
