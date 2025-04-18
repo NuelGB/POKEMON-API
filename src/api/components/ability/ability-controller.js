@@ -48,6 +48,7 @@ async function getBy(request, response, next) {
         return next(error);
     }
 }
+
 module.exports = {
     getBy,
     getList,
