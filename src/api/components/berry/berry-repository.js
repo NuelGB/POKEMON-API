@@ -1,7 +1,7 @@
 const { berry } = require('../../../models');
 
 async function getByName(name) {
-    return berry.find(
+    return berry.findOne(
         { name },
         {
             '_id': 0,
@@ -12,7 +12,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return berry.find(
+    return berry.findOne(
         { id },
         {
             '_id': 0,
