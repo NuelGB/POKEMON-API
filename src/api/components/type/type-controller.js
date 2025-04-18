@@ -40,7 +40,7 @@ async function getBy(request, response, next) {
         const type = await service.getBy(other);
 
         if (!type) {
-            throw errorResponder(errorTypes.BAD_REQUEST, `Type not found`);
+            throw errorResponder(errorTypes.NOT_FOUND, `Type not found`);
         }
         return response.status(200).json(type);
     } catch (error) {

@@ -42,6 +42,12 @@ async function getBy(request, response, next) {
         const { str } = request.params;
 
         const postedDocument = await service.getItem(Number(str));
+        if (!postedDocument) {
+            throw errorResponder(
+                errorTypes.NOT_FOUND,
+                `Characteristic not found`
+            );
+        }
 
         return response.status(200).json(postedDocument);
     } catch (error) {

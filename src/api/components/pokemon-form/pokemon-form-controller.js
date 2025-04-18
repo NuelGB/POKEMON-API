@@ -48,8 +48,8 @@ async function getBy(request, response, next) {
 
         if (!pokemonForm) {
             throw errorResponder(
-                errorTypes.BAD_REQUEST,
-                `Pokemon form not found`
+                errorTypes.NOT_FOUND,
+                `Pokemon Form not found`
             );
         }
 

@@ -17,7 +17,7 @@ async function getByID(id) {
 
 async function getByName(name) {
     return growthRate.findOne(
-        { name},
+        { name },
         {
             '_id': 0,
             '__v': 0,

@@ -46,8 +46,8 @@ async function getBy(request, response, next) {
 
         if (!pokemonSpecies) {
             throw errorResponder(
-                errorTypes.BAD_REQUEST,
-                `Pokemon species not found`
+                errorTypes.NOT_FOUND,
+                `Pokemon Species not found`
             );
         }
 

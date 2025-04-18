@@ -42,7 +42,7 @@ async function getBy(request, response, next) {
         const pokemons = await service.getBy(other);
 
         if (!pokemons) {
-            throw errorResponder(errorTypes.BAD_REQUEST, `Pokemon not found`);
+            throw errorResponder(errorTypes.NOT_FOUND, `Pokemon not found`);
         }
 
         return response.status(200).json(pokemons);

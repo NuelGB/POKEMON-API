@@ -42,6 +42,9 @@ async function getBy(request, response, next) {
         const { str } = request.params;
 
         const dox = await service.getItem(str);
+        if (!dox) {
+            throw errorResponder(errorTypes.NOT_FOUND, `Move not found`);
+        }
 
         return response.status(200).json(dox);
     } catch (error) {

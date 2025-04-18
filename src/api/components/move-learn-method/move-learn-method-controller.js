@@ -42,6 +42,12 @@ async function getBy(request, response, next) {
         const { str } = request.params;
 
         const postedDocument = await service.getItem(str);
+        if (!postedDocument) {
+            throw errorResponder(
+                errorTypes.NOT_FOUND,
+                `Move Learn Method not found`
+            );
+        }
 
         return response.status(200).json(postedDocument);
     } catch (error) {

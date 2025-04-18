@@ -42,6 +42,9 @@ async function get(request, response, next) {
         const { str } = request.params;
 
         const postedDocument = await service.getItem(str);
+        if (!postedDocument) {
+            throw errorResponder(errorTypes.NOT_FOUND, `Generation not found`);
+        }
 
         return response.status(200).json(postedDocument);
     } catch (error) {

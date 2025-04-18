@@ -42,6 +42,9 @@ async function get(request, response, next) {
         const { str } = request.params;
 
         const doc = await service.getItem(str);
+        if (!doc) {
+            throw errorResponder(errorTypes.NOT_FOUND, `Berry not found`);
+        }
 
         return response.status(200).json(doc);
     } catch (error) {
