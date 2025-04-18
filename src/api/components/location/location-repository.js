@@ -38,6 +38,7 @@ async function getList(offset, limit) {
                 'names._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

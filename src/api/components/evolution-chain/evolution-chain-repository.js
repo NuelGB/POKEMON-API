@@ -32,6 +32,7 @@ async function getList(offset, limit) {
                 'chain.evolves_to.evolves_to.evolves_to.evolution_details._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

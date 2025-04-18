@@ -35,6 +35,7 @@ async function getList(offset, limit) {
                 'pokemon_species._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

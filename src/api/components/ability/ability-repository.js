@@ -50,6 +50,7 @@ async function getList(offset, limit) {
                 'pokemon._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

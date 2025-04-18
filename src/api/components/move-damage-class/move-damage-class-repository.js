@@ -47,6 +47,7 @@ async function getList(offset, limit) {
                 'moves.abilities._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }

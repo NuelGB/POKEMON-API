@@ -23,6 +23,7 @@ async function getList(offset, limit) {
                 'flavor_text_entries._id': 0,
             }
         )
+        .sort({ id: 1 })
         .skip(offset)
         .limit(limit);
 }
