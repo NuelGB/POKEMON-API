@@ -12,8 +12,31 @@ async function getList(request, response, next) {
                 `${name} is not a valid endpoint!`
             );
         }
-        const limit = Number(request.query.limit) || 20;
-        const offset = Number(request.query.offset) || 0;
+        let { offset, limit } = request.query;
+        for (const i of [offset, limit]) {
+            if (i === undefined) continue;
+            const num = Number(i);
+            if (Number.isNaN(num)) {
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Query arguments must be numbers!'
+                );
+            }
+            if (num < 0) {
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    `Query arguments cannot be negative!`
+                );
+            }
+            if (!Number.isInteger(num)) {
+                throw errorResponder(
+                    errorTypes.ARGUMENT_TYPE,
+                    'Query arguments must be integers!'
+                );
+            }
+        }
+        offset = Number(offset) || 0;
+        limit = Number(limit) || 20;
 
         const meta = await service.getMetaData(name, limit, offset);
 
