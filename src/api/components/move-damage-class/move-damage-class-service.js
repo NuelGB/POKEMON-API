@@ -1,7 +1,10 @@
 const repository = require('./move-damage-class-repository');
 
-async function getItem(ID) {
-    return repository.getByID(ID);
+async function getItem(name) {
+    if (/^-?\d+(\.\d+)?$/.test(name)) {
+        return repository.getByID(name);
+    }
+    return repository.getByName(name);
 }
 
 async function getList(offset, limit) {

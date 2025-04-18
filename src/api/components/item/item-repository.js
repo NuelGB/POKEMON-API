@@ -1,7 +1,7 @@
 const { item } = require('../../../models');
 
 async function getByName(name) {
-    return item.find(
+    return item.findOne(
         { name },
         {
             '_id': 0,
@@ -18,7 +18,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return item.find(
+    return item.findOne(
         { id },
         {
             '_id': 0,

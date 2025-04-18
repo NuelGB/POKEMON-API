@@ -1,7 +1,7 @@
 const { location } = require('../../../models');
 
 async function getByName(name) {
-    return location.find(
+    return location.findOne(
         { name },
         {
             '_id': 0,
@@ -14,7 +14,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return location.find(
+    return location.findOne(
         { id },
         {
             '_id': 0,

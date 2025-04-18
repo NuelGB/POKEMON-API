@@ -1,7 +1,7 @@
 const evoTrig = require('../../../models')['evolution-trigger'];
 
 async function getByName(name) {
-    return evoTrig.find(
+    return evoTrig.findOne(
         { name },
         {
             '_id': 0,
@@ -13,7 +13,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return evoTrig.find(
+    return evoTrig.findOne(
         { id },
         {
             '_id': 0,

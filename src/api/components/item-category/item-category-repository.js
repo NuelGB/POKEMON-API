@@ -1,7 +1,7 @@
 const itemCat = require('../../../models')['item-category'];
 
 async function getByName(name) {
-    return itemCat.find(
+    return itemCat.findOne(
         { name },
         {
             '_id': 0,
@@ -13,7 +13,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return itemCat.find(
+    return itemCat.findOne(
         { id },
         {
             '_id': 0,

@@ -1,7 +1,7 @@
 const encounterMethod = require('../../../models')['encounter-method'];
 
 async function getByName(name) {
-    return encounterMethod.find(
+    return encounterMethod.findOne(
         { name },
         {
             '_id': 0,
@@ -12,7 +12,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return encounterMethod.find(
+    return encounterMethod.findOne(
         { id },
         {
             '_id': 0,

@@ -1,7 +1,7 @@
 const itemFling = require('../../../models')['item-fling-effect'];
 
 async function getByName(name) {
-    return itemFling.find(
+    return itemFling.findOne(
         { name },
         {
             '_id': 0,
@@ -13,7 +13,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return itemFling.find(
+    return itemFling.findOne(
         { id },
         {
             '_id': 0,

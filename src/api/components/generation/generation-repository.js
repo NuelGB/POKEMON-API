@@ -1,7 +1,7 @@
 const { generation } = require('../../../models');
 
 async function getByName(name) {
-    return generation.find(
+    return generation.findOne(
         { name },
         {
             '_id': 0,
@@ -16,7 +16,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return generation.find(
+    return generation.findOne(
         { id },
         {
             '_id': 0,

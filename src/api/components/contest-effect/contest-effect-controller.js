@@ -41,7 +41,7 @@ async function get(request, response, next) {
     try {
         const { str } = request.params;
 
-        const dox = await service.getItem(str);
+        const dox = await service.getItem(Number(str));
 
         return response.status(200).json(dox);
     } catch (error) {

@@ -1,7 +1,7 @@
 const itemAtt = require('../../../models')['item-attribute'];
 
 async function getByName(name) {
-    return itemAtt.find(
+    return itemAtt.findOne(
         { name },
         {
             '_id': 0,
@@ -14,7 +14,7 @@ async function getByName(name) {
 }
 
 async function getByID(id) {
-    return itemAtt.find(
+    return itemAtt.findOne(
         { id },
         {
             '_id': 0,

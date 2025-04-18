@@ -41,7 +41,7 @@ async function getBy(request, response, next) {
     try {
         const { str } = request.params;
 
-        const postedDocument = await service.getItem(Number(str));
+        const postedDocument = await service.getItem(str);
 
         return response.status(200).json(postedDocument);
     } catch (error) {

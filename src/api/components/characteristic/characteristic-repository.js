@@ -1,7 +1,7 @@
 const { characteristic } = require('../../../models');
 
 async function getByID(id) {
-    return characteristic.find(
+    return characteristic.findOne(
         { id },
         {
             '_id': 0,

@@ -1,7 +1,7 @@
 const contestEffect = require('../../../models')['contest-effect'];
 
 async function getByID(id) {
-    return contestEffect.find(
+    return contestEffect.findOne(
         { id },
         {
             '_id': 0,
