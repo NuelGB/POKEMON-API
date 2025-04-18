@@ -24,7 +24,23 @@ async function getByID(id) {
     );
 }
 
+async function getList(offset, limit) {
+    return itemCat
+        .find(
+            {},
+            {
+                '_id': 0,
+                '__v': 0,
+                'items._id': 0,
+                'names._id': 0,
+            }
+        )
+        .skip(offset)
+        .limit(limit);
+}
+
 module.exports = {
     getByID,
     getByName,
+    getList,
 };

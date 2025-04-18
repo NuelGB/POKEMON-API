@@ -7,5 +7,6 @@ const route = express.Router();
 module.exports = (app) => {
     app.use('/item-category', route);
 
+    route.get('/item-categories', controller.getList);
     route.get('/:str', controller.getBy);
 };

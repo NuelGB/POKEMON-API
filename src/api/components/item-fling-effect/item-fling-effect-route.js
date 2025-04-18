@@ -7,5 +7,6 @@ const route = express.Router();
 module.exports = (app) => {
     app.use('/item-fling-effect', route);
 
+    route.get('/item-fling-effects', controller.getList);
     route.get('/:str', controller.getBy);
 };
