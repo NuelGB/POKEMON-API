@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
+    "runbuild": "node src/index.js",
     "resetpopulate" : "node src/scripts/DbReset.js && node src/scripts/DBPopulate.js",
     "eslint": "eslint src/**",
     "esfix" : "eslint src/** --fix"
