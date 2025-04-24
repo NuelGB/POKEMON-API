@@ -17,6 +17,12 @@ async function getTypes(offset, limit) {
                 'damage_relations.half_damage_from._id': 0,
                 'damage_relations.no_damage_to._id': 0,
                 'damage_relations.no_damage_from._id': 0,
+                'past_damage_relations.damage_relations.double_damage_to._id': 0,
+                'past_damage_relations.damage_relations.double_damage_from._id': 0,
+                'past_damage_relations.damage_relations.half_damage_to._id': 0,
+                'past_damage_relations.damage_relations.half_damage_from._id': 0,
+                'past_damage_relations.damage_relations.no_damage_to._id': 0,
+                'past_damage_relations.damage_relations.no_damage_from._id': 0,
             }
         )
         .sort({ id: 1 })
@@ -40,6 +46,12 @@ async function getByID(id) {
             'damage_relations.half_damage_from._id': 0,
             'damage_relations.no_damage_to._id': 0,
             'damage_relations.no_damage_from._id': 0,
+            'past_damage_relations.damage_relations.double_damage_to._id': 0,
+            'past_damage_relations.damage_relations.double_damage_from._id': 0,
+            'past_damage_relations.damage_relations.half_damage_to._id': 0,
+            'past_damage_relations.damage_relations.half_damage_from._id': 0,
+            'past_damage_relations.damage_relations.no_damage_to._id': 0,
+            'past_damage_relations.damage_relations.no_damage_from._id': 0,
         }
     );
 }

@@ -22,7 +22,7 @@ module.exports = (db) =>
                 past_damage_relations: [
                     {
                         generation: NamedAPIResource,
-                        damage_relations: NamedAPIResource,
+                        damage_relations: TypeRelations,
                     },
                 ],
                 game_indices: [
